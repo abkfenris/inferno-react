@@ -10,3 +10,62 @@ For example:
 @import './variables/components';
 @import './themes/default';
 */
+
+h1 {
+  margin: 0 0;
+}
+
+#header {
+  background-color: red;
+}
+
+#main {
+  background-color: green;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-flex-flow: row;
+          flex-flow: row;
+  height: 100%;
+}
+
+#info {
+  background-color: green;
+  -webkit-flex: 1 1 30%;
+          flex: 1 1 30%;
+
+}
+
+#main-column {
+  -webkit-flex: 1 1 70%;
+          flex: 1 1 70%;
+  -webkit-order: 2;
+          order: 2;
+  height: 200px;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-flex-flow: column;
+          flex-flow: column;
+  background-color: gray;
+}
+
+#elevation {
+  background-color: yellow;
+  -webkit-flex: 1 1 30%;
+          flex: 1 1 30%;
+}
+
+#map {
+  background-color: blue;
+  -webkit-flex: 1 1 70%;
+          flex: 1 1 70%
+}
+
+@media all and (max-width: 640px) {
+  #main, #main-column, #info, #elevation, #map {
+    display: block;
+  }
+
+  #main-column {
+    height: auto;
+  }
+}
