@@ -1,7 +1,7 @@
 /* @flow */
 import React, { PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { increment, doubleAsync } from '../../redux/modules/counter'
+// import { connect } from 'react-redux'
+// import { increment, doubleAsync } from '../../redux/modules/counter'
 
 // We can use Flow (http://flowtype.org/) to type our component's props
 // and state. For convenience we've included both regular propTypes and
@@ -10,11 +10,11 @@ import { increment, doubleAsync } from '../../redux/modules/counter'
 // NOTE: You can run `npm run flow:check` to check for any errors in your
 // code, or `npm i -g flow-bin` to have access to the binary globally.
 // Sorry Windows users :(.
-type Props = {
-  counter: number,
-  doubleAsync: Function,
-  increment: Function
-};
+// type Props = {
+//   counter: number,
+//   doubleAsync: Function,
+//   increment: Function
+// };
 
 // We avoid using the `@connect` decorator on the class definition so
 // that we can export the undecorated component for testing.
@@ -42,10 +42,10 @@ export class HomeView extends React.Component<void, Props, void> {
   }
 }
 
-const mapStateToProps = (state) => ({
-  counter: state.counter
-})
-export default connect((mapStateToProps), {
-  increment: () => increment(1),
-  doubleAsync
-})(HomeView)
+// const mapStateToProps = (state) => ({
+//   counter: state.counter
+// })
+// export default connect((mapStateToProps), {
+//   increment: () => increment(1),
+//   doubleAsync
+// })(HomeView)
