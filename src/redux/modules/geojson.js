@@ -26,15 +26,15 @@ export function recieveGeojson (json) {
 export function loadGeojson () {
   return function (dispatch) {
     // inform app that we are attempting to load
-    dispatch(loadingGeojson)
+    dispatch(loadingGeojson())
+    console.log('about to fetch')
+    return fetch('https://gist.githubusercontent.com/abkfenris/d979f32ffcda7e528031/raw/259d179b3c348d577cbc1f17c8561903e85764ef/map.geojson')
+      .then(response => response.json())
+      .then(json =>
+        // update state with new geojson
+        dispatch(recieveGeojson(json))
+      )
   }
-
-  return fetch('https://gist.githubusercontent.com/abkfenris/d979f32ffcda7e528031/raw/259d179b3c348d577cbc1f17c8561903e85764ef/map.geojson')
-    .then(response => response.json())
-    .then(json =>
-      // update state with new geojson
-      dispatch(recieveGeojson(json))
-    );
 }
 
 // ------------------------------------

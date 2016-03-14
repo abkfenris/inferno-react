@@ -6,7 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import makeRoutes from './routes'
 import Root from './containers/Root'
 import configureStore from './redux/configureStore'
-// import { loadGeojson } from './redux/modules/geojson'
+import { loadGeojson } from './redux/modules/geojson'
 
 // Configure history for react-router
 const browserHistory = useRouterHistory(createBrowserHistory)({
@@ -36,4 +36,4 @@ ReactDOM.render(
 )
 
 // Load initial geojson
-// store.dispatch(loadGeojson())
+store.dispatch(loadGeojson())
