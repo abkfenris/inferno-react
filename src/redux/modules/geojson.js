@@ -6,6 +6,7 @@ import fetch from 'isomorphic-fetch'
 export const LOAD_GEOJSON = 'LOAD_GEOJSON'
 export const LOADING_GEOJSON = 'LOADING_GEOJSON'
 export const RECIEVE_GEOJSON = 'RECIEVE_GEOJSON'
+export const FAILED_GEOJSON = 'FAILED_GEOJSON'
 
 // ------------------------------------
 // Actions
@@ -23,6 +24,13 @@ export function recieveGeojson (json) {
   }
 }
 
+export function failedGeojson (exception) {
+  return {
+    type: FAILED_GEOJSON,
+    exception
+  }
+}
+
 export function loadGeojson () {
   return function (dispatch) {
     // inform app that we are attempting to load
@@ -33,6 +41,8 @@ export function loadGeojson () {
       .then(json =>
         // update state with new geojson
         dispatch(recieveGeojson(json))
+      ).catch(exception =>
+        dispatch(failedGeojson(exception))
       )
   }
 }
@@ -47,9 +57,13 @@ export function loadGeojson () {
 const initialState = {}
 const geojsonReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_GEOJSON:
     case LOADING_GEOJSON:
+      return Object.assign({}, state, {loading: true})
     case RECIEVE_GEOJSON:
+      return Object.assign({}, action.json)
+    case FAILED_GEOJSON:
+      return Object.assign({}, state, {loading: false, failed: true})
+    case LOAD_GEOJSON:
     default:
       return state
   }
