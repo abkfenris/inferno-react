@@ -1,3 +1,15 @@
+Inferno-react
+=============
+
+Building an interactive map for the Tuckerman Inferno race.
+
+[![bitHound Overall Score](https://www.bithound.io/github/abkfenris/inferno-react/badges/score.svg)](https://www.bithound.io/github/abkfenris/inferno-react) [![bitHound Dependencies](https://www.bithound.io/github/abkfenris/inferno-react/badges/dependencies.svg)](https://www.bithound.io/github/abkfenris/inferno-react/master/dependencies/npm) [![bitHound Dev Dependencies](https://www.bithound.io/github/abkfenris/inferno-react/badges/devDependencies.svg)](https://www.bithound.io/github/abkfenris/inferno-react/master/dependencies/npm) [![Codacy Badge](https://api.codacy.com/project/badge/grade/b86377b460524d05a4744b1b4026a60d)](https://www.codacy.com/app/abk/inferno-react) [![Code Climate](https://codeclimate.com/github/abkfenris/inferno-react/badges/gpa.svg)](https://codeclimate.com/github/abkfenris/inferno-react) [![Issue Count](https://codeclimate.com/github/abkfenris/inferno-react/badges/issue_count.svg)](https://codeclimate.com/github/abkfenris/inferno-react)
+
+[![Throughput Graph](https://graphs.waffle.io/abkfenris/inferno-react/throughput.svg)](https://waffle.io/abkfenris/inferno-react/metrics)
+
+
+Debris from before below...
+
 React Redux Starter Kit
 =======================
 

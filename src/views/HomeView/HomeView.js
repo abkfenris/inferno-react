@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 // We can use Flow (http://flowtype.org/) to type our component's props
@@ -9,11 +9,16 @@ import { connect } from 'react-redux'
 // NOTE: You can run `npm run flow:check` to check for any errors in your
 // code, or `npm i -g flow-bin` to have access to the binary globally.
 // Sorry Windows users :(.
-
+type Props = {
+  geojson: Object
+}
 // We avoid using the `@connect` decorator on the class definition so
 // that we can export the undecorated component for testing.
 // See: http://rackt.github.io/redux/docs/recipes/WritingTests.html
 export class HomeView extends React.Component<void, Props, void> {
+  static propTypes = {
+    geojson: PropTypes.object.isRequired
+  };
 
   render () {
     return (
@@ -31,5 +36,7 @@ export class HomeView extends React.Component<void, Props, void> {
   }
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  geojson: state.geojson
+})
 export default connect((mapStateToProps), {})(HomeView)
