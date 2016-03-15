@@ -36,7 +36,6 @@ export function loadGeojson () {
   return function (dispatch) {
     // inform app that we are attempting to load
     dispatch(loadingGeojson())
-    console.log('about to fetch')
     return fetch(JSON_URL)
       .then((response) => response.json())
       .then((json) =>
@@ -61,7 +60,11 @@ const geojsonReducer = (state = initialState, action) => {
     case LOADING_GEOJSON:
       return Object.assign({}, state, {loading: true})
     case RECIEVE_GEOJSON:
-      return Object.assign({}, action.json)
+      let features = action.json.features.map((feature) => {
+        let new_properties = Object.assign({}, feature.properties, {display: true, highlight: false})
+        return Object.assign({}, feature, {properties: new_properties})
+      })
+      return Object.assign({}, action.json, {features: features})
     case FAILED_GEOJSON:
       return Object.assign({}, state, {loading: false, failed: true})
     case LOAD_GEOJSON:
