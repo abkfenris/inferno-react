@@ -60,9 +60,12 @@ const geojsonReducer = (state = initialState, action) => {
     case LOADING_GEOJSON:
       return Object.assign({}, state, {loading: true})
     case RECIEVE_GEOJSON:
+      // add display and highlight to each feature
+      let new_properties = {display: true, highlight: false}
       let features = action.json.features.map((feature) => {
-        let new_properties = Object.assign({}, feature.properties, {display: true, highlight: false})
-        return Object.assign({}, feature, {properties: new_properties})
+        return Object.assign(
+          {}, feature,
+          {properties: Object.assign({}, feature.properties, new_properties)})
       })
       return Object.assign({}, action.json, {features: features})
     case FAILED_GEOJSON:
