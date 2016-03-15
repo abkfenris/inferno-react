@@ -31,6 +31,7 @@ export class HomeView extends React.Component<void, Props, void> {
             <div id='elevation'>Elevation</div>
             <Mapbox
               layer='mapbox.streets'
+              geojson={this.props.geojson}
               bounds={[
                 [44.0738, -71.3150],
                 [44.2762, -71.1653]
