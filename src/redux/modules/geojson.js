@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import distance from 'turf-distance'
 
 // ------------------------------------
 // Constants
@@ -66,6 +67,35 @@ const geojsonCompare = (a, b) => {
 }
 
 // ------------------------------------
+// Geojson elevations along distance
+// ------------------------------------
+
+const makePoint = (coordinates) => {
+  return {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates
+    }
+  }
+}
+
+const lineDistanceElevation = (coordinates_array) => {
+  let output = []
+  for (let i = 0; i < coordinates_array.length; i++) {
+    let dist = 0;
+    if (i === 0) {
+      output.push({x: 0, y: coordinates_array[i][2]})
+    } else {
+      let pointA = makePoint(coordinates_array[i-1])
+      let pointB = makePoint(coordinates_array[i])
+      dist += distance(pointA, pointB, 'miles')
+      output.push({x: dist, y: coordinates_array[i][2]})
+    }
+  }
+  return output
+}
+
+// ------------------------------------
 // Reducer
 // ------------------------------------
 const initialState = {}
@@ -75,8 +105,14 @@ const geojsonReducer = (state = initialState, action) => {
       return Object.assign({}, state, {loading: true})
     case RECIEVE_GEOJSON:
       let features = action.json.features.map((feature, index) => {
-          // add display, highlight, and id properties to each feature
-        let new_properties = {display: true, highlight: false, id: index, stage: parseFloat(feature.properties.stage)}
+        // add display, highlight, and id properties to each feature
+        var new_properties
+        if (feature.geometry.type === 'LineString') {
+          let elevations = lineDistanceElevation(feature.geometry.coordinates)
+          new_properties = {display: true, highlight: false, id: index, stage: parseFloat(feature.properties.stage), elevations}
+        } else {
+          new_properties = {display: true, highlight: false, id: index, stage: parseFloat(feature.properties.stage), elevation: feature.geometry.coordinates[2]}
+        }
         return Object.assign(
           {}, feature,
           {properties: Object.assign({}, feature.properties, new_properties)})
