@@ -24,7 +24,6 @@ export class Mapbox extends React.Component {
     this.setGeoJSON()
   }
 
-
   render () {
     return (
       <div id='map'></div>
