@@ -23,19 +23,23 @@ export class HomeView extends React.Component<void, Props, void> {
   };
 
   render () {
-    console.log(this.props.geojson)
     return (
       <div id='inferno-flex'>
         <div id='header'><h1>Tuckerman Inferno</h1></div>
         <div id='main'>
           <div id='main-column'>
             <div id='elevation'>Elevation</div>
-            <Mapbox />
+            <Mapbox
+              layer='mapbox.streets'
+              bounds={[
+                [44.0738, -71.3150],
+                [44.2762, -71.1653]
+              ]}
           </div>
           <div id='info'>
             <ul>
               {this.props.geojson.features.map((feature) =>
-                <li><h3>{feature.properties.name}</h3></li>
+                <li key={feature.properties.id}><h3>{feature.properties.name}</h3></li>
               )}
             </ul>
           </div>
