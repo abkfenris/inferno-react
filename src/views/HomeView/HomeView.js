@@ -2,6 +2,8 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
+import Mapbox from '../../components/Mapbox/Mapbox'
+
 // We can use Flow (http://flowtype.org/) to type our component's props
 // and state. For convenience we've included both regular propTypes and
 // Flow types, but if you want to try just using Flow you'll want to
@@ -28,7 +30,7 @@ export class HomeView extends React.Component<void, Props, void> {
         <div id='main'>
           <div id='main-column'>
             <div id='elevation'>Elevation</div>
-            <div id='map'>Map</div>
+            <Mapbox />
           </div>
           <div id='info'>
             <ul>
