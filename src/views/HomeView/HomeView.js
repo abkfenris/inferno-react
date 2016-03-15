@@ -33,7 +33,7 @@ export class HomeView extends React.Component<void, Props, void> {
           <div id='info'>
             <ul>
               {this.props.geojson.features.map((feature) =>
-                <li>{feature.properties.name}</li>
+                <li><h3>{feature.properties.name}</h3></li>
               )}
             </ul>
           </div>
