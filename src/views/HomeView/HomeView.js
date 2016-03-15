@@ -22,10 +22,11 @@ export class HomeView extends React.Component<void, Props, void> {
     geojson: PropTypes.object.isRequired
   };
 
-  render () {
-    return (
-      <div id='inferno-flex'>
-        <div id='header'><h1>Tuckerman Inferno</h1></div>
+  renderMain () {
+    if ((this.props.geojson.type !== 'FeatureCollection') || (this.props.geojson.loading === true)) {
+      <div id='main'><h2>Loading...</h2></div>
+    } else {
+      return (
         <div id='main'>
           <div id='main-column'>
             <div id='elevation'>Elevation</div>
@@ -45,6 +46,15 @@ export class HomeView extends React.Component<void, Props, void> {
             </ul>
           </div>
         </div>
+      )
+    }
+  }
+
+  render () {
+    return (
+      <div id='inferno-flex'>
+        <div id='header'><h1>Tuckerman Inferno</h1></div>
+        {this.renderMain()}
       </div>
     )
   }
