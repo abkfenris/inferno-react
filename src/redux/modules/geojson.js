@@ -81,14 +81,15 @@ const makePoint = (coordinates) => {
 
 const lineDistanceElevation = (coordinates_array) => {
   let output = []
+  let dist = 0
   for (let i = 0; i < coordinates_array.length; i++) {
-    let dist = 0
     if (i === 0) {
       output.push({x: 0, y: coordinates_array[i][2]})
     } else {
       let pointA = makePoint(coordinates_array[i - 1])
       let pointB = makePoint(coordinates_array[i])
-      dist += distance(pointA, pointB, 'miles')
+      let distanceAB =  distance(pointA, pointB, 'miles')
+      dist = dist + distanceAB
       output.push({x: dist, y: coordinates_array[i][2]})
     }
   }

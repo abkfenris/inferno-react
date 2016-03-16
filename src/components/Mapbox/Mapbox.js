@@ -27,7 +27,6 @@ export class Mapbox extends React.Component {
           popupAnchor: [1, -24],
           iconUrl: iconUrl(feature)
         })
-        console.log('figuring out icon for', feature)
         return L.marker(latlng, {icon: smallIcon}) //eslint-disable-line
       }
     })

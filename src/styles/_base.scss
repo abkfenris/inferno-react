@@ -62,10 +62,13 @@ h1 {
     position: relative;
     .stage-info {
       margin: 0 0 15px 20%;
-      background: #3594cb;
+      background: white;
+      //background: #3594cb;
       //color: #fff;
       //padding: 2em;
       position: relative;
+
+      // The arrow
       :after {
         right: 100%;
         border: solid transparent;
@@ -74,7 +77,8 @@ h1 {
         width: 0;
         position: absolute;
         pointer-events: none;
-        border-right-color: #3594cd;
+        //border-right-color: #3594cd;
+        border-right-color: white;
         border-width: 10px;
         top: 10px;
       }
