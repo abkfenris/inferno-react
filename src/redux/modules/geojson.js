@@ -120,6 +120,7 @@ const geojsonReducer = (state = initialState, action) => {
       features.sort(geojsonCompare)
       return Object.assign({}, action.json, {features: features})
     case FAILED_GEOJSON:
+      console.log(action.exception)
       return Object.assign({}, state, {loading: false, failed: true})
     case LOAD_GEOJSON:
     default:

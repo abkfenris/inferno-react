@@ -24,9 +24,7 @@ export class HomeView extends React.Component<void, Props, void> {
   };
 
   renderMain () {
-    if ((this.props.geojson.type !== 'FeatureCollection') || (this.props.geojson.loading === true)) {
-      <div id='main'><h2>Loading...</h2></div>
-    } else {
+    if (this.props.geojson.type === 'FeatureCollection') {
       return (
         <div id='main'>
           <div id='main-column'>
@@ -38,18 +36,16 @@ export class HomeView extends React.Component<void, Props, void> {
                 [44.0738, -71.3150],
                 [44.2762, -71.1653]
               ]}
+              accessToken='pk.eyJ1IjoiZmVucmlzIiwiYSI6ImNpbHRpdm82dDAwOHR0eWtyam52ajEzM2sifQ.FGpXoyOoB_sB9YW73YMfFA'/>
           </div>
-          <div id='info'>
-            <ul>
-              {this.props.geojson.features.map((feature) =>
-                <li key={feature.properties.id}><h3>{feature.properties.name}</h3></li>
-              )}
-            </ul>
-          </div>
-          <InfoList 
+          <InfoList
             geojson={this.props.geojson}
             />
         </div>
+      )
+    } else {
+      return (
+        <div id='main'><h2>Loading...</h2></div>
       )
     }
   }
