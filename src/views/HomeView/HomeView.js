@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import Mapbox from '../../components/Mapbox/Mapbox'
 import InfoList from '../../components/InfoList/InfoList'
+import FullElevation from '../../components/FullElevation/FullElevation'
 
 // We can use Flow (http://flowtype.org/) to type our component's props
 // and state. For convenience we've included both regular propTypes and
@@ -28,7 +29,10 @@ export class HomeView extends React.Component<void, Props, void> {
       return (
         <div id='main'>
           <div id='main-column'>
-            <div id='elevation'>Elevation</div>
+            <FullElevation
+              id='elevation'
+              geojson={this.props.geojson}
+              />
             <Mapbox
               layer='mapbox.streets'
               geojson={this.props.geojson}

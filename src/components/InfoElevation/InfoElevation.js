@@ -2,7 +2,7 @@ import React from 'react'
 import {LineChart} from 'react-d3-basic'
 
 type Props = {
-
+  elevations: Array
 };
 
 var width = 250
@@ -29,7 +29,6 @@ export class InfoElevation extends React.Component {
 
   render () {
     let elevations = this.props.elevations
-    console.log(elevations)
 
     return (
       <LineChart
@@ -40,7 +39,6 @@ export class InfoElevation extends React.Component {
         chartSeries={chartSeries}
         x={x}
         />
-      //<div>Test Words</div>
     )
   }
 }
