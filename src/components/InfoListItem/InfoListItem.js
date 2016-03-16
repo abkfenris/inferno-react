@@ -20,14 +20,14 @@ export class InfoListItem extends React.Component {
 
   renderIcon () {
     return (
-      <img src={iconUrl(this.props.feature)} />
+      <img className='stage-icon' src={iconUrl(this.props.feature)} />
     )
   }
 
   render () {
     const { properties } = this.props.feature
     return (
-      <li>
+      <li className={properties.type}>
         {this.renderIcon()}
         <div className='stage-info'>
           <div className='stage-name'>{properties.name}</div>

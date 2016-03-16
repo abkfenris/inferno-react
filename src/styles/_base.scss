@@ -21,6 +21,8 @@ h1 {
 
 #header {
   background-color: red;
+  position: absolute;
+  width: 100%;
 }
 
 #main {
@@ -30,6 +32,7 @@ h1 {
   -webkit-flex-flow: row;
           flex-flow: row;
   height: 100%;
+  padding-top: 37px;
 }
 
 #info {
@@ -51,14 +54,14 @@ h1 {
     bottom: 0;
     width: 10px;
     background: #afdcf8;
-    left: 20%;
+    left: 12%;
     margin-left: -10px;
   }
 
   li {
     position: relative;
     .stage-info {
-      margin: 0 0 15px 25%;
+      margin: 0 0 15px 20%;
       background: #3594cb;
       //color: #fff;
       //padding: 2em;
@@ -75,6 +78,37 @@ h1 {
         border-width: 10px;
         top: 10px;
       }
+    }
+    .stage-icon {
+      max-width: 20px;
+      max-height: 40px;
+      position: absolute;
+      background: #46a4da;
+      border-radius: 50%;
+      box-shadow: 0 0 0 8px #afdcfa;
+      left: 12%;
+      top: 0;
+      margin: 10px 0 0 -15px;
+    }
+    .start, .leg, .finish {
+      .stage-icon {
+        max-width: 40px;
+        max-height: 40px;
+      }
+    }
+  }
+  li.start, li.leg, li.finish {
+    .stage-icon {
+      max-width: 40px;
+      max-height: 40px;
+      margin: 0 0 0 -25px;
+    }
+  }
+  li.transition {
+    .stage-icon {
+      max-width: 30px;
+      max-height: 30px;
+      margin: 5px 0 0 -20px;
     }
   }
 }
