@@ -60,7 +60,7 @@ const geojsonCompare = (a, b) => {
   if (a.properties.stage < b.properties.stage) {
     return -1
   } else if (a.properties.stage > b.properties.stage) {
-    return 1;
+    return 1
   } else {
     return 0
   }
@@ -82,11 +82,11 @@ const makePoint = (coordinates) => {
 const lineDistanceElevation = (coordinates_array) => {
   let output = []
   for (let i = 0; i < coordinates_array.length; i++) {
-    let dist = 0;
+    let dist = 0
     if (i === 0) {
       output.push({x: 0, y: coordinates_array[i][2]})
     } else {
-      let pointA = makePoint(coordinates_array[i-1])
+      let pointA = makePoint(coordinates_array[i - 1])
       let pointB = makePoint(coordinates_array[i])
       dist += distance(pointA, pointB, 'miles')
       output.push({x: dist, y: coordinates_array[i][2]})
@@ -109,9 +109,20 @@ const geojsonReducer = (state = initialState, action) => {
         var new_properties
         if (feature.geometry.type === 'LineString') {
           let elevations = lineDistanceElevation(feature.geometry.coordinates)
-          new_properties = {display: true, highlight: false, id: index, stage: parseFloat(feature.properties.stage), elevations}
+          new_properties = {
+            display: true,
+            highlight: false,
+            id: index,
+            stage: parseFloat(feature.properties.stage),
+            elevations
+          }
         } else {
-          new_properties = {display: true, highlight: false, id: index, stage: parseFloat(feature.properties.stage), elevation: feature.geometry.coordinates[2]}
+          new_properties = {
+            display: true,
+            highlight: false,
+            id: index, stage:
+            parseFloat(feature.properties.stage),
+            elevation: feature.geometry.coordinates[2]}
         }
         return Object.assign(
           {}, feature,

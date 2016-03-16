@@ -1,5 +1,7 @@
 import React from 'react'
+
 import iconUrl from '../../utils/icons'
+import InfoElevation from '../InfoElevation/InfoElevation'
 
 // import Chart from 'react-d3-core'
 // import { LineChart } from 'react-d3-basic'
@@ -13,7 +15,9 @@ export class InfoListItem extends React.Component {
   renderElevation () {
     if (this.props.feature.properties.elevations) {
       return (
-        <div>Elevation Data!</div>
+        <InfoElevation
+          elevations={this.props.feature.properties.elevations}
+        />
       )
     }
   }

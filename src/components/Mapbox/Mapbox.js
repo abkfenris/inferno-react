@@ -19,16 +19,16 @@ export class Mapbox extends React.Component {
     this.map = L.mapbox.map('map', this.props.layer, { //eslint-disable-line
       accessToken: this.props.accessToken
     }).fitBounds(this.props.bounds)
-    this.featureLayer = L.mapbox.featureLayer(null, {
+    this.featureLayer = L.mapbox.featureLayer(null, { //eslint-disable-line
       pointToLayer: function (feature, latlng) {
-        let smallIcon = L.icon({
+        let smallIcon = L.icon({ //eslint-disable-line
           iconSize: [27, 27],
           iconAnchor: [13, 27],
           popupAnchor: [1, -24],
           iconUrl: iconUrl(feature)
         })
         console.log('figuring out icon for', feature)
-        return L.marker(latlng, {icon: smallIcon})
+        return L.marker(latlng, {icon: smallIcon}) //eslint-disable-line
       }
     })
     this.featureLayer.addTo(this.map)
