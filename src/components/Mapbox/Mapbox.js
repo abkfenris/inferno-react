@@ -16,9 +16,10 @@ export class Mapbox extends React.Component {
   }
 
   componentDidMount () {
-    this.map = L.mapbox.map('map', this.props.layer, { //eslint-disable-line
-      accessToken: this.props.accessToken
-    }).fitBounds(this.props.bounds)
+    L.mapbox.accessToken = this.props.accessToken
+    this.map = L.mapbox.map('map', 'mapbox.streets').fitBounds(this.props.bounds)
+    L.mapbox.styleLayer(this.props.layer).addTo(this.map)
+    
     this.featureLayer = L.mapbox.featureLayer(null, { //eslint-disable-line
       pointToLayer: function (feature, latlng) {
         let smallIcon = L.icon({ //eslint-disable-line
