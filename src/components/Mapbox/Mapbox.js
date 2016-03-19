@@ -34,6 +34,7 @@ export class Mapbox extends React.Component {
     })
     this.featureLayer.addTo(this.map)
     this.setGeoJSON()
+    L.control.locate().addTo(this.map) //eslint-disable-line
   }
 
   componentDidUpdate () {
