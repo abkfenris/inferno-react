@@ -3,7 +3,8 @@ import React from 'react'
 import InfoListItem from '../InfoListItem/InfoListItem'
 
 type Props = {
-  geojson: Object
+  geojson: Object,
+  onInfoListClick: Function
 };
 export class InfoList extends React.Component {
   props: Props;
@@ -16,6 +17,7 @@ export class InfoList extends React.Component {
             <InfoListItem
               feature={feature}
               key={feature.properties.stage}
+              onInfoListClick={this.props.onInfoListClick}
               />
           )}
         </ul>

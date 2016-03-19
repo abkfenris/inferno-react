@@ -16,10 +16,10 @@ export class Mapbox extends React.Component {
   }
 
   componentDidMount () {
-    L.mapbox.accessToken = this.props.accessToken
-    this.map = L.mapbox.map('map', 'mapbox.streets').fitBounds(this.props.bounds)
-    L.mapbox.styleLayer(this.props.layer).addTo(this.map)
-    
+    L.mapbox.accessToken = this.props.accessToken //eslint-disable-line
+    this.map = L.mapbox.map('map', 'mapbox.streets').fitBounds(this.props.bounds) //eslint-disable-line
+    L.mapbox.styleLayer(this.props.layer).addTo(this.map) //eslint-disable-line
+
     this.featureLayer = L.mapbox.featureLayer(null, { //eslint-disable-line
       pointToLayer: function (feature, latlng) {
         let smallIcon = L.icon({ //eslint-disable-line
@@ -37,6 +37,13 @@ export class Mapbox extends React.Component {
 
   componentDidUpdate () {
     this.setGeoJSON()
+    var map = this.map
+    this.featureLayer.eachLayer(function (marker) {
+      if (marker.feature.properties.highlight === true) {
+        marker.openPopup()
+        map.setView(marker.getLatLng(), 13)
+      }
+    })
   }
 
   render () {

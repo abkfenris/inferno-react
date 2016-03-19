@@ -9,6 +9,7 @@ export const LOADING_GEOJSON = 'LOADING_GEOJSON'
 export const RECIEVE_GEOJSON = 'RECIEVE_GEOJSON'
 export const FAILED_GEOJSON = 'FAILED_GEOJSON'
 export const JSON_URL = 'https://gist.githubusercontent.com/abkfenris/d979f32ffcda7e528031/raw/map.geojson' //eslint-disable-line
+export const ACTIVE_STAGE = 'ACTIVE_STAGE'
 
 // ------------------------------------
 // Actions
@@ -45,6 +46,13 @@ export function loadGeojson () {
       ).catch((exception) =>
         dispatch(failedGeojson(exception))
       )
+  }
+}
+
+export function activeStage (stage) {
+  return {
+    type: ACTIVE_STAGE,
+    stage
   }
 }
 
@@ -113,7 +121,6 @@ const geojsonReducer = (state = initialState, action) => {
           new_properties = {
             display: true,
             highlight: false,
-            id: index,
             stage: parseFloat(feature.properties.stage),
             elevations
           }
@@ -134,6 +141,17 @@ const geojsonReducer = (state = initialState, action) => {
     case FAILED_GEOJSON:
       console.log(action.exception)
       return Object.assign({}, state, {loading: false, failed: true})
+    case ACTIVE_STAGE:
+      let active_features = state.features.map((feature) => {
+        var new_properties
+        if (feature.properties.stage === action.stage) {
+          new_properties = Object.assign({}, feature.properties, {highlight: true})
+        } else {
+          new_properties = Object.assign({}, feature.properties, {highlight: false})
+        }
+        return Object.assign({}, feature, {properties: new_properties})
+      })
+      return Object.assign({}, state, {features: active_features})
     case LOAD_GEOJSON:
     default:
       return state

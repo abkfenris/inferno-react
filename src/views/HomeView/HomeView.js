@@ -6,6 +6,8 @@ import Mapbox from '../../components/Mapbox/Mapbox'
 import InfoList from '../../components/InfoList/InfoList'
 import FullElevation from '../../components/FullElevation/FullElevation'
 
+import { activeStage } from '../../redux/modules/geojson'
+
 // We can use Flow (http://flowtype.org/) to type our component's props
 // and state. For convenience we've included both regular propTypes and
 // Flow types, but if you want to try just using Flow you'll want to
@@ -14,14 +16,16 @@ import FullElevation from '../../components/FullElevation/FullElevation'
 // code, or `npm i -g flow-bin` to have access to the binary globally.
 // Sorry Windows users :(.
 type Props = {
-  geojson: Object
+  geojson: Object,
+  onInfoListClick: Function
 }
 // We avoid using the `@connect` decorator on the class definition so
 // that we can export the undecorated component for testing.
 // See: http://rackt.github.io/redux/docs/recipes/WritingTests.html
 export class HomeView extends React.Component<void, Props, void> {
   static propTypes = {
-    geojson: PropTypes.object.isRequired
+    geojson: PropTypes.object.isRequired,
+    onInfoListClick: PropTypes.func.isRequired
   };
 
   renderMain () {
@@ -44,6 +48,7 @@ export class HomeView extends React.Component<void, Props, void> {
           </div>
           <InfoList
             geojson={this.props.geojson}
+            onInfoListClick={this.props.onInfoListClick}
             />
         </div>
       )
@@ -67,4 +72,11 @@ export class HomeView extends React.Component<void, Props, void> {
 const mapStateToProps = (state) => ({
   geojson: state.geojson
 })
-export default connect((mapStateToProps), {})(HomeView)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onInfoListClick: (stage) => {
+      dispatch(activeStage(stage))
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView)

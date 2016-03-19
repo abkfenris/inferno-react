@@ -3,7 +3,7 @@ export const iconUrl = (feature) => {
   if (feature.properties.icon) {
     return base + feature.properties.icon
   } else {
-    return base + 'maki/marker-24@2x.png'
+    return base + 'maki-svg/marker-24.svg'
   }
 }
 
