@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import Mapbox from '../../components/Mapbox/Mapbox'
 import InfoList from '../../components/InfoList/InfoList'
-import FullElevation from '../../components/FullElevation/FullElevation'
+// import FullElevation from '../../components/FullElevation/FullElevation'
 
 import { activeStage } from '../../redux/modules/geojson'
 
@@ -17,7 +17,7 @@ import { activeStage } from '../../redux/modules/geojson'
 // Sorry Windows users :(.
 type Props = {
   geojson: Object,
-  onInfoListClick: Function
+  activeStage: Function
 }
 // We avoid using the `@connect` decorator on the class definition so
 // that we can export the undecorated component for testing.
@@ -25,7 +25,7 @@ type Props = {
 export class HomeView extends React.Component<void, Props, void> {
   static propTypes = {
     geojson: PropTypes.object.isRequired,
-    onInfoListClick: PropTypes.func.isRequired
+    activeStage: PropTypes.func.isRequired
   };
 
   renderMain () {
@@ -33,10 +33,6 @@ export class HomeView extends React.Component<void, Props, void> {
       return (
         <div id='main'>
           <div id='main-column'>
-            <FullElevation
-              id='elevation'
-              geojson={this.props.geojson}
-              />
             <Mapbox
               layer='mapbox://styles/fenris/cik5z57vy008cn8m7ujlfxvha'
               geojson={this.props.geojson}
@@ -44,11 +40,12 @@ export class HomeView extends React.Component<void, Props, void> {
                 [44.0738, -71.3150],
                 [44.2762, -71.1653]
               ]}
-              accessToken='pk.eyJ1IjoiZmVucmlzIiwiYSI6ImNpbHRpdm82dDAwOHR0eWtyam52ajEzM2sifQ.FGpXoyOoB_sB9YW73YMfFA'/>
+              accessToken='pk.eyJ1IjoiZmVucmlzIiwiYSI6ImNpbHRpdm82dDAwOHR0eWtyam52ajEzM2sifQ.FGpXoyOoB_sB9YW73YMfFA'
+              activeStage={this.props.activeStage}/>
           </div>
           <InfoList
             geojson={this.props.geojson}
-            onInfoListClick={this.props.onInfoListClick}
+            onInfoListClick={this.props.activeStage}
             />
         </div>
       )
@@ -74,7 +71,7 @@ const mapStateToProps = (state) => ({
 })
 const mapDispatchToProps = (dispatch) => {
   return {
-    onInfoListClick: (stage) => {
+    activeStage: (stage) => {
       dispatch(activeStage(stage))
     }
   }

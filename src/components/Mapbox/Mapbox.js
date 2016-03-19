@@ -6,7 +6,8 @@ type Props = {
   layer: PropTypes.string.isRequired,
   accessToken: PropTypes.string.isRequired,
   bounds: PropTypes.array.isRequired,
-  geojson: PropTypes.object.isRequired
+  geojson: PropTypes.object.isRequired,
+  activeStage: PropTypes.func.isRequired
 };
 export class Mapbox extends React.Component {
   props: Props;
@@ -38,11 +39,15 @@ export class Mapbox extends React.Component {
   componentDidUpdate () {
     this.setGeoJSON()
     var map = this.map
+    var activeStage = this.props.activeStage
     this.featureLayer.eachLayer(function (marker) {
       if (marker.feature.properties.highlight === true) {
         marker.openPopup()
         map.setView(marker.getLatLng(), 13)
       }
+      marker.on('click', function (e) {
+        activeStage(marker.feature.properties.stage)
+      })
     })
   }
 
