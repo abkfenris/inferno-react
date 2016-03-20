@@ -38,6 +38,27 @@ export class InfoElevation extends React.Component {
     yDomain[0] = yDomain[0] - 50
     yDomain[1] = yDomain[1] + 50
 
+    let xDomain = d3.extent(elevations, (d) => (d.x))
+
+    let xTickFormat = (e) => {
+      // for any xMax's larger than 3, we're only looking for round numbers
+      if (xDomain[1] >= 3) {
+        if (Math.floor(e) === e) {
+          return e
+        } else {
+          return
+        }
+      } else {
+        // If it is .x0 but not if it is .xy
+        // so anything smaller should be tenths
+        if (Math.floor(e * 10) === e * 10) {
+          return e
+        } else {
+          return
+        }
+      }
+    }
+
     return (
       <LineChart
         margins={margins}
@@ -46,6 +67,7 @@ export class InfoElevation extends React.Component {
         height={height}
         chartSeries={chartSeries}
         yDomain={yDomain}
+        xTickFormat={xTickFormat}
         x={x}
         />
     )
