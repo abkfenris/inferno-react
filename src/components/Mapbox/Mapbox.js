@@ -14,6 +14,18 @@ export class Mapbox extends React.Component {
 
   setGeoJSON () {
     this.featureLayer.setGeoJSON(this.props.geojson)
+
+    var map = this.map
+    var activeStage = this.props.activeStage
+    this.featureLayer.eachLayer(function (marker) {
+      if (marker.feature.properties.highlight === true) {
+        marker.openPopup()
+        map.setView(marker.getLatLng(), 13)
+      }
+      marker.on('click', function (e) {
+        activeStage(marker.feature.properties.stage)
+      })
+    })
   }
 
   componentDidMount () {
@@ -38,17 +50,6 @@ export class Mapbox extends React.Component {
 
   componentDidUpdate () {
     this.setGeoJSON()
-    var map = this.map
-    var activeStage = this.props.activeStage
-    this.featureLayer.eachLayer(function (marker) {
-      if (marker.feature.properties.highlight === true) {
-        marker.openPopup()
-        map.setView(marker.getLatLng(), 13)
-      }
-      marker.on('click', function (e) {
-        activeStage(marker.feature.properties.stage)
-      })
-    })
   }
 
   render () {

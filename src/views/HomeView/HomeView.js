@@ -2,6 +2,8 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
+import '../../styles/core.scss'
+
 import Mapbox from '../../components/Mapbox/Mapbox'
 import InfoList from '../../components/InfoList/InfoList'
 // import FullElevation from '../../components/FullElevation/FullElevation'
