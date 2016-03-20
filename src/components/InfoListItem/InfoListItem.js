@@ -47,7 +47,7 @@ export class InfoListItem extends React.Component {
       <li className={classes} onClick={this._onClick(properties.stage)}>
         {this.renderIcon()}
         <div className='stage-info'>
-          <div className='stage-name'>{properties.name}</div>
+          <h3 className='stage-name'>{properties.name}</h3>
           <div className='description'>{properties.description}</div>
           {this.renderElevation()}
         </div>

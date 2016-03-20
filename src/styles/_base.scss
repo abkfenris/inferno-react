@@ -16,12 +16,23 @@ For example:
 / Variables
 -----------*/
 
-// Line colors
-$line-color: #afdcf8;
+// Friends of Tuckerman Ravine Colors
+$fotr-green: #036240;
+$fotr-blue: #0A72CE;
+
+
+// Header colors
+$header: $fotr-blue;
 
 // Info list colors
+$info-background: $fotr-green;
 $info-default: white;
-$info-highlight: red;
+$info-highlight: $fotr-blue;
+// Line colors
+$line-color: #afdcf8;
+$line-color: lighten($fotr-blue, 30%);
+$line-dark-color: $fotr-blue;
+
 
 
 h1 {
@@ -33,13 +44,14 @@ h1 {
 }
 
 #header {
-  background-color: red;
+  color: white;
+  padding-left: 1em;
+  background: $header;
   position: absolute;
   width: 100%;
 }
 
 #main {
-  background-color: green;
   display: -webkit-flex;
   display:         flex;
   -webkit-flex-flow: row;
@@ -49,12 +61,11 @@ h1 {
 }
 
 #info {
-  background-color: green;
+  background-color: $info-background;
   overflow-y: scroll;
   -webkit-flex: 1 1 30%;
           flex: 1 1 30%;
   ul {
-    margin: 30px 0 0 0;
     padding: 0;
     list-style: none;
     position: relative;
@@ -76,11 +87,8 @@ h1 {
     .stage-info {
       margin: 0 0 15px 20%;
       background: $info-default;
-      //background: #3594cb;
-      //color: #fff;
-      //padding: 2em;
+      border-left: white solid 5px;
       position: relative;
-      padding: 10px;
 
       // The arrow
       :after {
@@ -96,8 +104,10 @@ h1 {
         top: 10px;
       }
       .stage-name {
+        color: $fotr-green;
         font-size: 1.2em;
         padding-bottom: 5px;
+        margin-bottom: 0;
 
       }
     }
@@ -107,7 +117,7 @@ h1 {
       max-width: 20px;
       max-height: 20px;
       position: absolute;
-      background: #46a4da;
+      background: $line-dark-color;
       border-radius: 50%;
       box-shadow: 0 0 0 8px $line-color;
       left: 12%;
@@ -129,11 +139,13 @@ h1 {
   // style the currently selected item
   li.highlight {
     .stage-info {
-      //border-left: $info-highlight solid 10px;
-      border-left-color: $info-highlight;
+      border-color: $info-highlight;
       border-left-size: 10px;
       border-left-style: solid;
-      padding-left: 10px;
+      .stage-name {
+        background-color: $info-highlight;
+        color: white
+      }
       :after {
         border-right-color: $info-highlight;
         border-width: 15px;
@@ -170,16 +182,30 @@ h1 {
   background-color: gray;
 }
 
-#elevation {
-  background-color: yellow;
-  -webkit-flex: 1 1 30%;
-          flex: 1 1 30%;
-}
-
 #map {
-  background-color: blue;
   -webkit-flex: 1 1 70%;
           flex: 1 1 70%
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0;
+}
+.leaflet-popup-content {
+  padding: 0;
+  padding-top: 0 !important;
+  border-radius: 3px;
+  h3 {
+    margin: 0;
+    color: white;
+    text-align: center;
+    background-color: $fotr-blue;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 5px;
+  }
+  .description {
+    padding: 0px 5px 5px 5px;
+  }
 }
 
 @media all and (max-width: 640px) {
@@ -192,7 +218,6 @@ h1 {
   }
 
   #map {
-    //height: 400px;
     height: 70vh;
   }
 

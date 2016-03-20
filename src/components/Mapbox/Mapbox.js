@@ -18,12 +18,26 @@ export class Mapbox extends React.Component {
     var map = this.map
     var activeStage = this.props.activeStage
     this.featureLayer.eachLayer(function (marker) {
-      if (marker.feature.properties.highlight === true) {
+      var properties = marker.feature.properties
+
+      // make popup
+      var popup = '<h3 class="name">' + properties.name + '</h3>'
+
+      if (properties.description) {
+        popup += '<div class="description">' + properties.description + '</div>'
+      }
+      // Bind popup
+      marker.bindPopup(popup)
+
+      // Pop up highlighted stage
+      if (properties.highlight === true) {
         marker.openPopup()
         map.setView(marker.getLatLng(), 13)
       }
+
+      // Set stage highlight on click
       marker.on('click', function (e) {
-        activeStage(marker.feature.properties.stage)
+        activeStage(properties.stage)
       })
     })
   }
