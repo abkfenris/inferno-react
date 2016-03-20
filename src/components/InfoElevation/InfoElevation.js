@@ -1,12 +1,13 @@
 import React from 'react'
 import {LineChart} from 'react-d3-basic'
+import d3 from 'd3'
 
 type Props = {
   elevations: Array
 };
 
 var width = 250
-var height = 300
+var height = 250
 var margins = {
   left: 50,
   right: 10,
@@ -16,8 +17,8 @@ var margins = {
 var chartSeries = [
   {
     field: 'y',
-    name: 'Elevation',
-    color: '#ff7f0e'
+    name: 'Elevation in Feet',
+    color: '#0A72CE'
   }
 ]
 var x = function (d) {
@@ -30,6 +31,13 @@ export class InfoElevation extends React.Component {
   render () {
     let elevations = this.props.elevations
 
+    // get the range of elevation values
+    let yDomain = d3.extent(elevations, (d) => (d.y))
+
+    // add some padding to the values so they look nicer
+    yDomain[0] = yDomain[0] - 50
+    yDomain[1] = yDomain[1] + 50
+
     return (
       <LineChart
         margins={margins}
@@ -37,6 +45,7 @@ export class InfoElevation extends React.Component {
         width={width}
         height={height}
         chartSeries={chartSeries}
+        yDomain={yDomain}
         x={x}
         />
     )
