@@ -21,9 +21,9 @@ var chartSeries = [
     color: '#0A72CE'
   }
 ]
-var x = function (d) {
-  return d.x
-}
+// var x = function (d) {
+//   return d.x
+//
 
 export class InfoElevation extends React.Component {
   props: Props;
@@ -50,12 +50,22 @@ export class InfoElevation extends React.Component {
         }
       } else {
         // If it is .x0 but not if it is .xy
-        // so anything smaller should be tenths
+        // so anything smaller should be tenth
         if (Math.floor(e * 10) === e * 10) {
           return e
         } else {
           return
         }
+      }
+    }
+
+    let x = (d) => {
+      // If the xMax is larger than 1 mile act normally and return miles
+      if (xDomain[1] > 1) {
+        return d.x
+      // otherwise return feet
+      } else {
+        return d.x * 5280
       }
     }
 
