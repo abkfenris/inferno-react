@@ -77,8 +77,6 @@
     "react-d3-basic": "^1.6.9",
     "react-dom": "^0.14.0",
     "react-redux": "^4.0.0",
-    "react-router": "^2.0.0",
-    "react-router-redux": "^4.0.0",
     "redux": "^3.0.0",
     "redux-thunk": "^1.0.0",
     "turf-distance": "^1.1.0"

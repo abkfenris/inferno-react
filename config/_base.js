@@ -37,11 +37,12 @@ const config = {
     colors : true
   },
   compiler_vendor : [
-    'history',
+    //'history',
     'react',
     'react-redux',
-    'react-router',
-    'react-router-redux',
+    //'react-router',
+    //'react-router-redux',
+    'd3',
     'redux'
   ],
 
