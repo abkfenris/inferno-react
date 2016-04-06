@@ -3,7 +3,8 @@ import {LineChart} from 'react-d3-basic'
 import d3 from 'd3'
 
 type Props = {
-  elevations: Array
+  elevations: Array,
+  color: string
 };
 
 var width = 250
@@ -14,13 +15,7 @@ var margins = {
   top: 10,
   bottom: 30
 }
-var chartSeries = [
-  {
-    field: 'y',
-    name: 'Elevation in Feet',
-    color: '#0A72CE'
-  }
-]
+
 // var x = function (d) {
 //   return d.x
 //
@@ -68,6 +63,14 @@ export class InfoElevation extends React.Component {
         return d.x * 5280
       }
     }
+
+    var chartSeries = [
+      {
+        field: 'y',
+        name: 'Elevation in Feet',
+        color: this.props.color
+      }
+    ]
 
     return (
       <LineChart

@@ -20,14 +20,26 @@ export class InfoListItem extends React.Component {
       return (
         <InfoElevation
           elevations={this.props.feature.properties.elevations}
+          color={this.props.feature.properties.stroke}
         />
       )
     }
   }
 
+  renderStyle (style, properties) {
+    if (properties.stroke) {
+      let obj = {}
+      obj[style] = properties.stroke
+      return (obj)
+    }
+  }
+
   renderIcon () {
     return (
-      <img className='stage-icon' src={iconUrl(this.props.feature)} />
+      <img
+        className='stage-icon'
+        style={this.renderStyle('background', this.props.feature.properties)}
+        src={iconUrl(this.props.feature)} />
     )
   }
 
@@ -47,7 +59,10 @@ export class InfoListItem extends React.Component {
       <li className={classes} onClick={this._onClick(properties.stage)}>
         {this.renderIcon()}
         <div className='stage-info'>
-          <h3 className='stage-name'>{properties.name}</h3>
+          <h3
+            className='stage-name'
+            style={properties.highlight ? null : this.renderStyle('color', properties)}
+            >{properties.name}</h3>
           <div className='description'>{properties.description}</div>
           {this.renderElevation()}
         </div>
