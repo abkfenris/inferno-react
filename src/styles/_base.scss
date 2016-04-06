@@ -110,6 +110,11 @@ h1 {
         margin-bottom: 0;
 
       }
+      .description {
+        img {
+          max-width: 100%
+        }
+      }
     }
     .stage-icon {
       height: 20px;
@@ -205,6 +210,9 @@ h1 {
   }
   .description {
     padding: 0px 5px 5px 5px;
+    img {
+      max-width: 100%;
+    }
   }
 }
 

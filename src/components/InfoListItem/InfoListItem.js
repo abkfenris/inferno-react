@@ -49,6 +49,17 @@ export class InfoListItem extends React.Component {
     }
   }
 
+  renderImage (properties) {
+    if ((properties.img) && (properties.img_large)) {
+      return (
+        <a href={properties['img-large']} target='_blank'>
+          <img src={properties.img} />
+          Click to view larger<br/>
+        </a>
+      )
+    }
+  }
+
   render () {
     const { properties } = this.props.feature
     let classes = properties.type
@@ -63,7 +74,9 @@ export class InfoListItem extends React.Component {
             className='stage-name'
             style={properties.highlight ? null : this.renderStyle('color', properties)}
             >{properties.name}</h3>
-          <div className='description'>{properties.description}</div>
+          <div className='description'>
+            {this.renderImage(properties)}{properties.description}
+          </div>
           {this.renderElevation()}
         </div>
       </li>

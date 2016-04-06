@@ -24,7 +24,11 @@ export class Mapbox extends React.Component {
       var popup = '<h3 class="name">' + properties.name + '</h3>'
 
       if (properties.description) {
-        popup += '<div class="description">' + properties.description + '</div>'
+        popup += '<div class="description">'
+        if (properties.img && properties.img_large) {
+          popup += '<a target="_blank" href="' + properties.img_large + '"><img src="' + properties.img + '"></a>'
+        }
+        popup += properties.description + '</div>'
       }
       // Bind popup
       marker.bindPopup(popup)
