@@ -138,6 +138,9 @@ h1 {
       max-width: 40px;
       max-height: 40px;
       margin: 0 0 0 -25px;
+      path {
+        fill: #FFFFFF;
+      }
     }
   }
 
@@ -237,8 +240,8 @@ h1 {
 // Fixing the leaflet-locate control
 .leaflet-control-container .leaflet-bar-part-single {
   .fa-map-marker {
-    margin-top: 4px;
-    margin-left: 9px;
+    //margin-top: 4px;
+    //margin-left: 9px;
   }
   .fa-spinner {
     margin-top: 4px;
